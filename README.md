@@ -683,3 +683,9 @@ Forks and modified versions must remove them.
 [![Star History Chart](https://api.star-history.com/svg?repos=storytold/lightcraft&type=Date&legend=top-left)](https://www.star-history.com/?repos=storytold%2Flightcraft&type=date&legend=top-left)
 
 Library, Tools, and Presets panels can be regrouped, split, floated within the app window, closed, and reopened. Tools keeps the current Edit/Crop/Masking mode; the photo view and filmstrip stay together. Drag a panel header to a target edge or another header. Its context menu offers Float panel, Move to group, and Close panel. Existing panel toggles reopen panels at their saved location; Reset Panel Layout restores the app layout. Floating panels remain inside the current app window.
+
+## Documentação para agentes
+
+Última atualização desta seção: 2026-10-28.
+
+Comece pelo [índice de documentação](docs/INDEX.md): visão geral, funcionalidades, padrões, operação, decisões e rotina de manutenção para retomar o projeto em uma nova sessão.
