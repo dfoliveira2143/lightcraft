@@ -1,4 +1,9 @@
 <p align="center">
+
+## Politica de validacao local
+
+Siga a politica obrigatoria de [validacao documental e confirmacao para testes](AGENTS.md#validacao-documental-e-confirmacao-para-testes). Commits exclusivamente documentais elegiveis usam revisao do diff, `git diff --check`, conferencia de links locais e coerencia das instrucoes; informe a dispensa da validacao completa. Testes, compilacao, lint de codigo e CI exigem explicacao previa de necessidade e alcance e confirmacao explicita do usuario antes de executar. Comandos e rotinas abaixo estao sujeitos a essa politica, inclusive verificacoes iniciais; autonomia nao dispensa essa confirmacao.
+
   <a href="https://getartcraft.com/">
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="docs/brand/artcraft-logo-white.svg">
@@ -539,7 +544,7 @@ Humans and agents follow the same rules, so read [AGENTS.md](AGENTS.md) first. T
   image, icon and font in the repo is original, public domain, Creative Commons, OFL or permissively licensed, and has
   an entry in [assets/ATTRIBUTION.md](assets/ATTRIBUTION.md) added in the same commit. New fonts go to
   [storytold/craft-fonts](https://github.com/storytold/craft-fonts), not here.
-- **Pure Rust**, enforced crate layering, everything is a command, and `cargo xtask ci` green before every commit
+- **Pure Rust**, enforced crate layering, everything is a command, and `cargo xtask ci` green before commits requiring code validation (subject to the documentation exception and explicit user confirmation in AGENTS.md)
   (one task id per commit).
 - **Never crash.** Non-test code returns errors instead of panicking: no `unwrap()`, `expect()`, `panic!` or
   `unsafe`, checked indexing on anything derived from input, and a regression test with every crash fix. Details in

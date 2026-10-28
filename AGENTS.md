@@ -1,5 +1,17 @@
 # LightCraft — instructions for agents
 
+## Validacao documental e confirmacao para testes
+
+- Esta politica e obrigatoria e prevalece sobre orientacoes conflitantes de validacao automatica ou autonomia neste arquivo, em CLAUDE.md, planos e demais referencias. Preserva as regras de organizacao dos commits, branch e autorizacao de push.
+- A excecao vale somente para commits exclusivamente documentais: README.md, CLAUDE.md, AGENTS.md, instrucoes para agentes e documentos de orientacao, planejamento ou referencia que nao sejam usados na execucao, compilacao, empacotamento ou testes do projeto. A extensao do arquivo, por si so, nao determina a elegibilidade.
+- Nesses commits, nao execute suite de testes, compilacao, lint de codigo ou CI completo. Revise o diff, execute `git diff --check`, confira os links locais e a coerencia das instrucoes alteradas. Informe na entrega que a validacao completa foi dispensada por se tratar de alteracao exclusivamente documental.
+- A excecao nao abrange codigo, dependencias, configuracoes, scripts, workflows, assets usados pelo produto, documentacao executavel nem arquivos consumidos pelo aplicativo ou pelo build. Commits que misturem documentacao com essas alteracoes continuam sujeitos as validacoes aplicaveis.
+- Antes de iniciar testes ou validacoes de codigo, explique ao usuario quais verificacoes pretende executar, por que sao necessarias e seu alcance. Informe se podem exigir compilacao demorada, sem inventar estimativas. Pergunte se deseja continuar e aguarde confirmacao explicita; pedidos para alterar arquivos ou criar commits nao autorizam essas execucoes automaticamente.
+- Nao repita a pergunta para a mesma execucao ja autorizada. Peca nova confirmacao se precisar ampliar significativamente o escopo.
+- Se o usuario nao autorizar, preserve as alteracoes e informe quais verificacoes ficaram pendentes. Nao crie commits que exijam essas verificacoes sem uma dispensa explicita do usuario.
+- Durante execucoes longas, comunique avancos relevantes, falhas ou bloqueios, sem mensagens repetitivas de espera.
+- Revisao do diff, `git diff --check` e conferencia de links locais podem ser feitas sem confirmacao.
+
 LightCraft is a clean-room, open-source, pure-Rust photo library + non-destructive raw developer targeting Adobe Lightroom parity (and beyond). Native on macOS, Windows, Linux; web via WASM. Sibling of `../pdfcraft` (Acrobat), `../photocraft` (Photoshop), `../vectorcraft` (Illustrator) and `../filmcraft` (Premiere), with the same conventions.
 
 ## Start every session here
@@ -17,7 +29,7 @@ LightCraft is a clean-room, open-source, pure-Rust photo library + non-destructi
    `docs/target-app-parity.md` when a listed gap closes (bump each doc's *Last updated* line and revision history, per
    craftrules `standards/progress-docs.md`); `cargo xtask parity` (part of `ci`) checks that every `cmd:`/`ctl:` id and
    path the tracker cites still exists, and `cargo xtask parity --write` refreshes its summary.
-5. Follow the autonomous operation protocol (`plan/execution-plan.md` §7). Don't stop to ask unless §7 lists the decision as the user's.
+5. Follow the autonomous operation protocol (`plan/execution-plan.md` §7). Ask for explicit user confirmation before tests or code validation as required by AGENTS.md; otherwise follow the autonomy protocol.
 
 `plan/` is gitignored (local-only).
 
@@ -63,7 +75,7 @@ of it. Full standard: `../craftrules/standards/never-crash.md`
 - **Everything is a command** (`crates/engine`): id, label, menu path, shortcut, params, enabled(), run(). UI, CLI, control channel and MCP all dispatch by id. Every slider is a `develop` control spec.
 - **Resolution independence:** settings use normalized image coordinates and relative radii; previews and exports must match.
 - **Time goes through `chrono`** (workspace dependency). Never hand-roll UTC/calendar conversion (days-to-date algorithms, leap-year math); a crate owns only its output format string. The one exception is range extension: past the years chrono can represent, shift the date by whole 400-year Gregorian cycles (146,097 days, after which the calendar repeats), let chrono compute the month and day, and add the cycles back to the year (splitting seconds into hours, minutes and seconds is plain arithmetic).
-- **Quality gates** before every commit: `cargo xtask ci` (fmt, clippy -D warnings, tests, layers, assets, wasm).
+- **Quality gates** before commits requiring code validation (subject to the documentation exception and explicit user confirmation in AGENTS.md): `cargo xtask ci` (fmt, clippy -D warnings, tests, layers, assets, wasm).
 - **Commits:** one task id per commit (`M2.3: local Laplacian highlights/shadows`). Only green states. End messages with the attribution line required by the environment.
 
 ## Assets: icons, images, fonts (ABSOLUTE RULE — never violate)

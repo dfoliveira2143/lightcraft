@@ -1,5 +1,9 @@
 # LightCraft — instructions for agents
 
+## Politica de validacao local
+
+Siga a politica obrigatoria de [validacao documental e confirmacao para testes](AGENTS.md#validacao-documental-e-confirmacao-para-testes). Commits exclusivamente documentais elegiveis usam revisao do diff, `git diff --check`, conferencia de links locais e coerencia das instrucoes; informe a dispensa da validacao completa. Testes, compilacao, lint de codigo e CI exigem explicacao previa de necessidade e alcance e confirmacao explicita do usuario antes de executar. Comandos e rotinas abaixo estao sujeitos a essa politica, inclusive verificacoes iniciais; autonomia nao dispensa essa confirmacao.
+
 LightCraft is a clean-room, open-source, pure-Rust photo library + non-destructive raw developer targeting Adobe Lightroom parity (and beyond). Native on macOS, Windows, Linux; web via WASM. Sibling of `../pdfcraft` (Acrobat), `../photocraft` (Photoshop), `../vectorcraft` (Illustrator) and `../filmcraft` (Premiere), with the same conventions.
 
 ## Start every session here
@@ -18,7 +22,7 @@ LightCraft is a clean-room, open-source, pure-Rust photo library + non-destructi
    craftrules `standards/progress-docs.md`); `cargo xtask parity` (part of `ci`) checks that every `cmd:`/`ctl:` id and
    path the tracker cites still exists and that `docs/gaps.md` lists each gap once, and `cargo xtask parity --write`
    refreshes its summary.
-5. Follow the autonomous operation protocol (`plan/execution-plan.md` §7). Don't stop to ask unless §7 lists the decision as the user's.
+5. Follow the autonomous operation protocol (`plan/execution-plan.md` §7). Ask for explicit user confirmation before tests or code validation as required by AGENTS.md; otherwise follow the autonomy protocol.
 
 `plan/` is gitignored (local-only).
 
@@ -68,7 +72,7 @@ of it. Full standard: `../craftrules/standards/never-crash.md`
   `Cancel::No` when the job can't stop. No progress window, panel or progress toast of its own; its tests assert the row.
 - **Resolution independence:** settings use normalized image coordinates and relative radii; previews and exports must match.
 - **Time goes through `chrono`** (workspace dependency). Never hand-roll UTC/calendar conversion (days-to-date algorithms, leap-year math); a crate owns only its output format string. The one exception is range extension: past the years chrono can represent, shift the date by whole 400-year Gregorian cycles (146,097 days, after which the calendar repeats), let chrono compute the month and day, and add the cycles back to the year (splitting seconds into hours, minutes and seconds is plain arithmetic).
-- **Quality gates** before every commit: `cargo xtask ci --quick` (fmt, clippy -D warnings, the changed packages'
+- **Quality gates** before commits requiring code validation (subject to the documentation exception and explicit user confirmation in AGENTS.md): `cargo xtask ci --quick` (fmt, clippy -D warnings, the changed packages'
   tests, layers, assets, and heif / parity / wasm when touched). GitHub runs the full `cargo xtask ci` on every PR
   (`.github/workflows/ci.yml`); run the full one locally before merging branches (below) or when `--quick` can't see
   the risk. One `ci` runs at a time per machine; others wait their turn (`xtask/src/ci_lock.rs`).
