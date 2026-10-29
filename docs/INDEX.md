@@ -81,3 +81,5 @@ Os guias são mapas de navegação, não novas cópias dos contratos técnicos. 
 - [LightCraft in the browser](web.md)
 - [What's new in LightCraft](whats-new.md)
 - [XMP sidecars and interchange](xmp-interop.md)
+
+- [Creative Workshop: origem, identidade e publicação](branding.md)

@@ -174,7 +174,7 @@ mod tests {
             tag: "v99.0.0".into(),
             version: craft_update::parse_version("99.0.0"),
             name: "LightCraft 99.0.0".into(),
-            html_url: "https://github.com/storytold/lightcraft/releases/tag/v99.0.0".into(),
+            html_url: "https://github.com/dfoliveira2143/lightcraft/releases/tag/v99.0.0".into(),
             ..Default::default()
         };
         app.updates_rt.updater.offer(release);

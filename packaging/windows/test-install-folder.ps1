@@ -80,7 +80,7 @@ try {
   New-Item -ItemType Directory -Path $legacy, $modern, $explicit, $emptied | Out-Null
   $legacyExe = Join-Path $legacy 'lightcraft.exe'
   [IO.File]::WriteAllText($legacyExe, 'test placeholder; never executed')
-  $programFiles = Join-Path ([Environment]::GetFolderPath('LocalApplicationData')) 'Programs\ArtCraft'
+  $programFiles = Join-Path ([Environment]::GetFolderPath('LocalApplicationData')) 'Programs\Creative Workshop'
   $cases = @(
     @{ Name = 'fresh'; Expected = (Join-Path $programFiles 'LightCraft') },
     @{ Name = 'legacy-app-paths'; Legacy = $legacyExe; Expected = $legacy },

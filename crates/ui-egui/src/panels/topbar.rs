@@ -158,7 +158,7 @@ pub fn show(app: &mut LightcraftApp, ui: &mut egui::Ui) {
                 None => crate::i18n::tr("Import Photos…").to_string(),
             };
             for (id, icon, tip, cmd) in [
-                ("discord", Icon::Chat, "Join the ArtCraft community on Discord", "app.discord"),
+                ("discord", Icon::Chat, "Project support on GitHub", "app.discord"),
                 ("cloud", Icon::Cloud, cloud_tip, ""),
                 ("help", Icon::Help, "Keyboard shortcuts", "app.shortcuts"),
                 ("share", Icon::Share, "Export", "dialog.export"),
